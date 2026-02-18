@@ -1,0 +1,31 @@
+# Updated requirements.txt for Kafka Order Processing Project (February 2025)
+
+# Django Web Framework
+# Latest: 6.0.2, but for learning projects, using LTS version 5.2.11 is recommended
+# LTS has better stability and 3 years of support until April 2028
+Django==5.2.11
+
+# Django REST Framework
+# Latest stable version with Django 5.2 and 6.0 support
+djangorestframework==3.16.1
+
+# PostgreSQL Database Adapter
+# Latest stable version with Python 3.9+ support
+psycopg2-binary==2.9.11
+
+# Kafka Python Client
+# Note: kafka-python (2.0.2) is no longer actively maintained
+# Using confluent-kafka-python instead - it's production-ready, faster, and actively maintained
+confluent-kafka[schema-registry]==2.13.0
+
+# Alternative: If you prefer pure Python implementation (not recommended for production)
+# kafka-python==2.0.2
+
+# Environment Variables Management
+python-dotenv==1.0.1
+
+# Optional but recommended packages for production
+# gunicorn==21.2.0          # WSGI HTTP Server for production
+# django-cors-headers==4.3.1 # CORS handling for APIs
+# celery==5.3.6             # For async task processing (alternative to Kafka for some use cases)
+# redis==5.0.1              # If you want to add caching
