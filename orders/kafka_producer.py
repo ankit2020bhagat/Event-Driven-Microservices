@@ -16,4 +16,18 @@ class OrderProducer:
         )
 
     def send_order(self, order_data):
-        pass
+        try:
+            future = self.producer.send(settings.KAFKA_TOPIC_ORDERS, value=order_data)
+            record_metadata = future.get(timeout=10)
+
+            logger.info(f"Order sent to kafka: {order_data["order_id"]}")
+            logger.info(f"Topic {record_metadata.topic}, Partition: {record_metadata.partition},"
+                        f"{record_metadata.offset}")
+            return True
+
+        except Exception as e:
+            logger.error(f"Error sending order to kafka: {str(e)}")
+            return False
+
+    def close(self):
+        self.producer.close()
